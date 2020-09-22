@@ -19,8 +19,8 @@ object Solution {
   }
 }
 
-//better solution I found online
-//https://www.programmersought.com/article/92354413850/
+// better solution I found online
+// https://www.programmersought.com/article/92354413850/
 object Solution {
   def twoSum(nums: Array[Int], target: Int): Array[Int] = {
     import scala.collection.mutable
