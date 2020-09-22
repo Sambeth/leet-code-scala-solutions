@@ -125,3 +125,57 @@ object Solution {
     finalLinkedList
   }
 }
+
+//NOTE: the code above has other features not required by leetcode but for my learning experience and curiosity
+//if you want a solution to submit just send the commented out code below
+//object Solution {
+//  def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode = {
+//    // 4. start main compute with
+//    // variables for adding two linked lists
+//    var p, q, tempNode, prevNode, finalLinkedList: ListNode = null
+//    var addition, divideBy10, remainder, carry, value: Int = 0
+//
+//    p = l1
+//    q = l2
+//
+//    while (p != null && q != null) {
+//
+//      addition = p.x + q.x
+//      addition = addition + carry
+//
+//      divideBy10 = addition / 10
+//
+//      if (divideBy10 != 0) {
+//        remainder = 10 % addition
+//        carry = divideBy10
+//        value = remainder
+//      } else {
+//        value = addition
+//      }
+//
+//      // create new node
+//      tempNode = new ListNode(value)
+//
+//      // obviously if this is the first run then set the head of the final linked list
+//      if (finalLinkedList == null) {
+//        finalLinkedList = tempNode
+//
+//        // if this is not the first run, which means the head has already
+//        // been created then continue the link
+//      } else {
+//        prevNode.next = tempNode
+//      }
+//
+//      // ready previous node for next iteration
+//      prevNode = tempNode
+//
+//      // move to next node
+//      p = p.next
+//      q = q.next
+//    }
+//
+//    // return reverse linked list
+//    finalLinkedList
+//
+//  }
+//}
