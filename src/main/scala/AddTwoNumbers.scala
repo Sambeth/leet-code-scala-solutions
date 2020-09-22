@@ -23,6 +23,11 @@ object Solution {
     diff.abs
   }
 
+  def getSmallerLinkedList(l1: ListNode, l2: ListNode): ListNode = {
+    if (len(l1) > len(l2)) l2
+    else l1
+  }
+
   def reverseList(head: ListNode): ListNode = {
     var prev: ListNode = null
     var curr: ListNode = head
@@ -37,7 +42,7 @@ object Solution {
     prev
   }
 
-  def addZeroNodeAtStart(l: ListNode, numOfZeroes: Int = 1): ListNode = {
+  def addZeroNodeAtStart(l: ListNode, numOfZeroes: Int): ListNode = {
     var zeroNode: ListNode = null
     var head: ListNode = l
 
@@ -47,5 +52,76 @@ object Solution {
       head = zeroNode
     }
     head
+  }
+
+  def addTwoNumbers(l1: ListNode, l2: ListNode): ListNode = {
+    var first: ListNode = l1
+    var second: ListNode = l2
+
+    // 1. check the length of the linked lists and find the difference
+    val diff: Int = differenceInLength(l1: ListNode, l2: ListNode)
+
+    // 2. if diff is greater than 0 then prepend 0s to the head of the shorter linked list
+    // if diff is 0 then both lists are the same length and do nothing
+    if (diff > 0) {
+      // find the shortest linked list and prepend with zeroes
+      if (len(first) > len(second)) {
+        second = addZeroNodeAtStart(second, diff)
+      }
+      else {
+        first = addZeroNodeAtStart(first, diff)
+      }
+    }
+
+    // 3. reverse the linked lists
+    first = reverseList(first)
+    second = reverseList(second)
+
+    // 4. start main compute with
+    // variables for adding two linked lists
+    var p, q, tempNode, prevNode, finalLinkedList: ListNode = null
+    var addition, divideBy10, remainder, carry, value: Int = 0
+
+    p = first
+    q = second
+
+    while (p != null && q != null) {
+
+      addition = p.x + q.x
+      addition = addition + carry
+
+      divideBy10 = addition / 10
+
+      if (divideBy10 != 0) {
+        remainder = 10 % addition
+        carry = divideBy10
+        value = remainder
+      } else {
+        value = addition
+      }
+
+      // create new node
+      tempNode = new ListNode(value)
+
+      // obviously if this is the first run then set the head of the final linked list
+      if (finalLinkedList == null) {
+        finalLinkedList = tempNode
+
+        // if this is not the first run, which means the head has already
+        // been created then continue the link
+      } else {
+        prevNode.next = tempNode
+      }
+
+      // ready previous node for next iteration
+      prevNode = tempNode
+
+      // move to next node
+      p = p.next
+      q = q.next
+    }
+
+    // return reverse linked list
+    finalLinkedList
   }
 }
