@@ -36,4 +36,16 @@ object Solution {
     }
     prev
   }
+
+  def addZeroNodeAtStart(l: ListNode, numOfZeroes: Int = 1): ListNode = {
+    var zeroNode: ListNode = null
+    var head: ListNode = l
+
+    for(_ <- 0 until numOfZeroes) {
+      zeroNode = new ListNode(0)
+      zeroNode.next = head
+      head = zeroNode
+    }
+    head
+  }
 }
