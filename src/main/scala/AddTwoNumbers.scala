@@ -23,11 +23,6 @@ object Solution {
     diff.abs
   }
 
-  def getSmallerLinkedList(l1: ListNode, l2: ListNode): ListNode = {
-    if (len(l1) > len(l2)) l2
-    else l1
-  }
-
   def reverseList(head: ListNode): ListNode = {
     var prev: ListNode = null
     var curr: ListNode = head
